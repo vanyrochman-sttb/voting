@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 07, 2016 at 05:58 AM
--- Server version: 5.7.16-0ubuntu0.16.04.1
--- PHP Version: 7.0.8-0ubuntu0.16.04.3
+-- Host: 127.0.0.1
+-- Generation Time: Mar 01, 2021 at 04:12 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `e_vote`
+-- Database: `evote`
 --
 
 -- --------------------------------------------------------
@@ -52,7 +53,7 @@ CREATE TABLE `t_kandidat` (
   `foto` varchar(255) NOT NULL,
   `visi` varchar(255) NOT NULL,
   `misi` varchar(255) NOT NULL,
-  `suara` smallint(4) NOT NULL DEFAULT '0',
+  `suara` smallint(4) NOT NULL DEFAULT 0,
   `periode` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,9 +62,7 @@ CREATE TABLE `t_kandidat` (
 --
 
 INSERT INTO `t_kandidat` (`id_kandidat`, `nama_calon`, `foto`, `visi`, `misi`, `suara`, `periode`) VALUES
-(4, 'Achmad Jazuli Utsman', '12814409_251522388516088_1284515540919034534_n.jpg', 'Maju bersama', 'Menghidupkan kegiatan ekstra Pramuka', 1, '2016/2017'),
-(5, 'Paijo', 'emoticon-under-stress.png', 'meningkatkan ketakwaan siswa', 'menghidupkan kedisiplinan', 0, '2016/2017'),
-(6, 'zulfa', 'avril-lavigne-photoshoot-42.jpg', 'smart', 'choise', 2, '2016/2017');
+(7, 'Abdul', '0.11406300 1614566695.png', '123', '123', 1, '2021/2022');
 
 -- --------------------------------------------------------
 
@@ -81,8 +80,9 @@ CREATE TABLE `t_kelas` (
 --
 
 INSERT INTO `t_kelas` (`id_kelas`, `nama_kelas`) VALUES
-('K01', 'X - TKJ'),
-('K02', 'X - TKR');
+('K01', 'TIF'),
+('K02', 'TI'),
+('K03', 'DKV');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ INSERT INTO `t_kelas` (`id_kelas`, `nama_kelas`) VALUES
 --
 
 CREATE TABLE `t_pemilih` (
-  `nis` varchar(10) NOT NULL,
+  `nim` varchar(10) NOT NULL,
   `periode` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,8 +99,9 @@ CREATE TABLE `t_pemilih` (
 -- Dumping data for table `t_pemilih`
 --
 
-INSERT INTO `t_pemilih` (`nis`, `periode`) VALUES
-('2155', '2016/2017');
+INSERT INTO `t_pemilih` (`nim`, `periode`) VALUES
+('2155', '2016/2017'),
+('18111115', '2021/2022');
 
 -- --------------------------------------------------------
 
@@ -121,8 +122,7 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`id_user`, `fullname`, `id_kelas`, `jk`, `pemilih`) VALUES
-('2155', 'A. Jazuli Utsman', 'K01', 'L', 'Y'),
-('2156', 'Zuli', 'K01', 'P', 'Y');
+('18111115', 'Muhammad Vany Rochman', 'K01', 'L', 'Y');
 
 --
 -- Indexes for dumped tables
@@ -161,11 +161,14 @@ ALTER TABLE `t_user`
 --
 ALTER TABLE `t_admin`
   MODIFY `id_admin` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `t_kandidat`
 --
 ALTER TABLE `t_kandidat`
-  MODIFY `id_kandidat` smallint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kandidat` smallint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
